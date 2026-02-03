@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Search</title>
+</head>
+<body>
+  <h2>Ultraviolet Proxy</h2>
+  <form id="form">
+    <input id="target" type="text" placeholder="https://example.com" autofocus>
+    <button type="submit">Go</button>
+  </form>
+
+  <script>
+    if ("serviceWorker" in navigator) {
+      navigator.serviceWorker.register("/sw.js");
+    }
+
+    document.getElementById("form").onsubmit = e => {
+      e.preventDefault();
+      const url = document.getElementById("target").value;
+      window.location = "/go/" + encodeURIComponent(url);
+    };
+  </script>
+</body>
+</html>
